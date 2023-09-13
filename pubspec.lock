@@ -194,6 +194,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  db_migration:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: e9c050bae9414cdcef5e4bbd20b44f916b6400dc
+      url: "https://github.com/nandanghermawan21/db_migration.git"
+    source: git
+    version: "0.0.1"
   device_info_plus:
     dependency: "direct main"
     description:

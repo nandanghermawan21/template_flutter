@@ -2,17 +2,15 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:circular_loader/circular_loader.dart';
+import 'package:db_migration/db_migration.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sqflite/sqlite_api.dart';
 import 'package:enerren/util/api_end_point.dart';
 import 'package:enerren/util/colour.dart';
-import 'package:enerren/util/databases.dart';
 import 'package:enerren/util/font.dart';
 import 'package:enerren/util/strings.dart';
-import 'package:enerren/util/mode_util.dart';
 import 'package:enerren/util/text_style.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
@@ -43,7 +41,6 @@ class Data extends ChangeNotifier {
   ValueChanged<Uri?>? deepLinkingHandler;
   SharedPreferences? session;
   Databases? database;
-  Function(Database?, int)? onCreateDb;
   ValueChanged<Map<String, dynamic>?>? onServiceDataReceived;
   Directory? appDirectory;
   Map<String, String> directories = {};
@@ -86,27 +83,7 @@ class Data extends ChangeNotifier {
   Future<bool> _initDatabse() async {
     database = await Databases().initializeDb(
       onCreate: (db, version) {
-        ModeUtil.debugPrint("Database information :");
-        ModeUtil.debugPrint("path                 : ${db?.path}");
-        ModeUtil.debugPrint("version              : $version");
-        if (onCreateDb != null) {
-          onCreateDb!(db, version);
-        }
-      },
-    );
-    return true;
-  }
-
-  Future<bool> reInitDatabase() async {
-    database = await Databases().initializeDb(
-      deleteOldDb: true,
-      onCreate: (db, version) {
-        ModeUtil.debugPrint("Reinit Database information :");
-        ModeUtil.debugPrint("path                 : ${db?.path}");
-        ModeUtil.debugPrint("version              : $version");
-        if (onCreateDb != null) {
-          onCreateDb!(db, version);
-        }
+        database?.startMigration(version);
       },
     );
     return true;
@@ -157,15 +134,6 @@ class Data extends ChangeNotifier {
             : iosInfo?.model,
       );
     });
-
-    // return DeviceInfo(
-    //   imei: await UniqueIdentifier.serial,
-    //   deviceId:
-    //       Platform.isAndroid ? androidInfo?.id : iosInfo?.identifierForVendor,
-    //   deviceModel: Platform.isAndroid
-    //       ? ("${androidInfo?.model} ${androidInfo?.device}").toUpperCase()
-    //       : iosInfo?.model,
-    // );
   }
 }
 

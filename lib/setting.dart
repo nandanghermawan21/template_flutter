@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:sqflite/sqlite_api.dart';
 import 'package:enerren/recource/string_id_id.dart';
 import 'package:enerren/route.dart';
 import 'package:enerren/util/api_end_point.dart';
@@ -44,18 +42,6 @@ void setting() {
     }
   };
   System.data.lastDatabaseVersion = 1;
-  System.data.onCreateDb = (db, version) {
-    for (int i = version; i < System.data.lastDatabaseVersion; i++) {
-      rootBundle.loadString("dbmigration/dbv${i + 1}.sql").then((sql) {
-        db?.execute(sql).then((v) {
-          db.setVersion(i + 1).then((v) {
-            ModeUtil.debugPrint("update to version ${i + 1}");
-          });
-        });
-      });
-      ModeUtil.debugPrint("update is uptodate");
-    }
-  };
   System.data.directories = {
     DirKey.collection: "collection",
     DirKey.inbox: "inbox",
