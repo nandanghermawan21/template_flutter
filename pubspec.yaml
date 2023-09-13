@@ -49,6 +49,10 @@ dependencies:
     git:
       url: https://github.com/nandanghermawan21/db_migration.git
       ref: master
+  error_handling:
+    git:
+      url: https://github.com/nandanghermawan21/error_handling.git
+      ref: master
 
 dev_dependencies:
   flutter_test:

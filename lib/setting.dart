@@ -1,3 +1,6 @@
+import 'package:enerren/recource/color_default.dart';
+import 'package:enerren/recource/font_default.dart';
+import 'package:enerren/util/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:enerren/recource/string_id_id.dart';
@@ -14,6 +17,9 @@ void setting() {
   System.data.route = route.route;
   System.data.apiEndPoint = ApiEndPoint();
   System.data.strings = StringsIdId();
+  System.data.color = ColorDefault();
+  System.data.font = FontDefault();
+  System.data.textStyles = TextStyles();
   //change end point on dev mode
   if (System.data.versionName.split(".")[1] == "1") {
     System.data.apiEndPoint.baseUrl = "https://form.bagdja.com/api/";

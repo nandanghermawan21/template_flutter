@@ -73,4 +73,6 @@ class Databases {
         "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;";
     return db?.rawQuery(sql);
   }
+
+  void startMigration(int version) {}
 }

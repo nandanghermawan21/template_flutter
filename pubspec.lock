@@ -260,7 +260,7 @@ packages:
     source: hosted
     version: "4.0.6"
   error_handling:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "."
       ref: master

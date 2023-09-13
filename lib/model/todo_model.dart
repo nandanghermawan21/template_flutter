@@ -1,13 +1,18 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:sprintf/sprintf.dart';
 import 'package:sqflite/sqlite_api.dart';
 
-class TodoModel {
+class TodoModel extends ChangeNotifier {
   int? id;
   String? title;
   String? description;
   DateTime? dueDate;
   bool? isCompleted;
+  //for ui only
+  bool? onProgess = false;
 
   TodoModel({
     this.id,
@@ -17,12 +22,17 @@ class TodoModel {
     this.isCompleted,
   });
 
+  void commit(){
+    notifyListeners();
+  }
+
   factory TodoModel.fromJson(Map<String, dynamic> json) => TodoModel(
         id: json["id"],
         title: json["title"],
         description: json["description"],
-        dueDate: DateTime.parse(json["dueDate"]),
-        isCompleted: json["isCompleted"],
+        dueDate:
+            json["due_date"] != null ? DateTime.parse(json["due_date"]) : null,
+        isCompleted: json["is_completed"] == 1 ? true : false,
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,11 +45,10 @@ class TodoModel {
 
   static Future<List<TodoModel>?> getFromDb({
     required Database? db,
-    required String? receiver,
-    required String? sender,
   }) {
     return rootBundle.loadString("dbquery/selectAllTodo.sql").then((sql) async {
       return db?.rawQuery(sql).then((value) {
+        debugPrint(json.encode(value));
         return value.map((e) => TodoModel.fromJson(e)).toList();
       }).catchError((onError) {
         throw onError;
@@ -74,7 +83,9 @@ class TodoModel {
     required int? id,
     required bool? isCompleted,
   }) {
-    return rootBundle.loadString("dbquery/updateStatusTodo.sql").then((sql) async {
+    return rootBundle
+        .loadString("dbquery/updateStatusTodo.sql")
+        .then((sql) async {
       sql = sprintf(sql, [
         id,
         isCompleted == true ? 1 : 0,
