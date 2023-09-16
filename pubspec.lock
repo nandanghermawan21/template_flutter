@@ -199,7 +199,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: e9c050bae9414cdcef5e4bbd20b44f916b6400dc
+      resolved-ref: "3ba4ec813ff750c4d058ec14aad9addbed689571"
       url: "https://github.com/nandanghermawan21/db_migration.git"
     source: git
     version: "0.0.1"
@@ -391,10 +391,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_widget_from_html
-      sha256: "85a66c2aa4de67f99d212b1aeacda4a8965adc8ead20d58a45cb6bdad9e73e10"
+      sha256: b1e35ab3137cbc313c2545c47713f3dedbcb3605b1bcf1aa82f2c2fddaaded7c
       url: "https://pub.dev"
     source: hosted
-    version: "0.10.5+2"
+    version: "0.10.5+3"
   flutter_widget_from_html_core:
     dependency: transitive
     description:
@@ -455,10 +455,10 @@ packages:
     dependency: transitive
     description:
       name: fwfh_webview
-      sha256: "77415c48aef60547cbeafeeb2db1885af30bb25882329fe9344bd7ea0cc9f9e0"
+      sha256: "90a8dda0695403cf57abd7e8b83f6fb1f1a12933930a0bf9cac7cafb06e06a18"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.0+1"
+    version: "0.9.0+2"
   geocoding:
     dependency: "direct main"
     description:
@@ -591,10 +591,10 @@ packages:
     dependency: transitive
     description:
       name: just_audio
-      sha256: "890cd0fc41a1a4530c171e375a2a3fb6a09d84e9d508c5195f40bcff54330327"
+      sha256: "5ed0cd723e17dfd8cd4b0253726221e67f6546841ea4553635cf895061fc335b"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.34"
+    version: "0.9.35"
   just_audio_platform_interface:
     dependency: transitive
     description:
@@ -691,7 +691,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: e1cd8ba76472b3d1a333737faa1793f2b59d70df
+      resolved-ref: "62afa8aebe315239e96aaa2ac3e04866064f4cf6"
       url: "https://github.com/nandanghermawan21/my_image_picker.git"
     source: git
     version: "0.0.1"

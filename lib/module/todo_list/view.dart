@@ -37,8 +37,11 @@ class View extends PresenterState {
                 ListDataComponent<TodoModel>(
                   controller: listDataController,
                   enableDrag: false,
-                  enableGetMore: false,
+                  listViewMode: ListDataComponentMode.listView,
+                  enableGetMore: true,
+                  showSearchBox: true,
                   dataSource: (skip, key) {
+                    debugPrint("fire me $key skip $skip");
                     return TodoModel.getFromDb(
                       db: System.data.database!.db!,
                     ).then((value) {

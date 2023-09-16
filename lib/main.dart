@@ -111,9 +111,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: System.data.strings!.appName,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: data.themeData,
         routes: data.route ?? const <String, WidgetBuilder>{},
         initialRoute: initialRouteName,
         navigatorKey: System.data.navigatorKey,
